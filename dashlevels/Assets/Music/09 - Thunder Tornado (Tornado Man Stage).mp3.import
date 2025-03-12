@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c64aqv82kho7r"
+path="res://.godot/imported/09 - Thunder Tornado (Tornado Man Stage).mp3-33ec13804f31a6b00422769ee118d94b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/09 - Thunder Tornado (Tornado Man Stage).mp3"
+dest_files=["res://.godot/imported/09 - Thunder Tornado (Tornado Man Stage).mp3-33ec13804f31a6b00422769ee118d94b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dpr1di2e61u4m"
+path="res://.godot/imported/14. Solar Man.mp3-f8fa587488b18e1b96fe376002f871ff.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/14. Solar Man.mp3"
+dest_files=["res://.godot/imported/14. Solar Man.mp3-f8fa587488b18e1b96fe376002f871ff.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

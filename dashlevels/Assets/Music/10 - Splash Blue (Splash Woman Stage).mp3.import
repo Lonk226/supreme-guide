@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dgconrqpgrvlo"
+path="res://.godot/imported/10 - Splash Blue (Splash Woman Stage).mp3-f26d43a90a4ae435bbe38079aa403fce.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/10 - Splash Blue (Splash Woman Stage).mp3"
+dest_files=["res://.godot/imported/10 - Splash Blue (Splash Woman Stage).mp3-f26d43a90a4ae435bbe38079aa403fce.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

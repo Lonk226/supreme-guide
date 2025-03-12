@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ce705itnbu2au"
+path="res://.godot/imported/18. Wily Stage 1 (Inside).mp3-0ac77f2f464a0e74e97697584ef4b0a9.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/18. Wily Stage 1 (Inside).mp3"
+dest_files=["res://.godot/imported/18. Wily Stage 1 (Inside).mp3-0ac77f2f464a0e74e97697584ef4b0a9.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

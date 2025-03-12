@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkhmqybvedr4g"
+path="res://.godot/imported/Vampire Killer.mp3-7fb6b365c5f51f52051a8bb9526881de.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Vampire Killer.mp3"
+dest_files=["res://.godot/imported/Vampire Killer.mp3-7fb6b365c5f51f52051a8bb9526881de.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

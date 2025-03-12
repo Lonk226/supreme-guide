@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ci4yva0tkaniv"
+path="res://.godot/imported/03. Stage 1, Final Stage.mp3-9fc6c5a09d931fe69f53f218926ee0c8.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/03. Stage 1, Final Stage.mp3"
+dest_files=["res://.godot/imported/03. Stage 1, Final Stage.mp3-9fc6c5a09d931fe69f53f218926ee0c8.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bygospc3jv8au"
+path="res://.godot/imported/08 - Concrete Jungle (Concrete Man Stage).mp3-21939e53862175cbd549839cf4bab9fe.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/08 - Concrete Jungle (Concrete Man Stage).mp3"
+dest_files=["res://.godot/imported/08 - Concrete Jungle (Concrete Man Stage).mp3-21939e53862175cbd549839cf4bab9fe.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
