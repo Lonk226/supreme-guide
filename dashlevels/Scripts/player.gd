@@ -138,6 +138,8 @@ func _physics_process(delta) -> void:
 	elif horizontal_input < 0 and is_facing_right:
 		is_facing_right = false
 		animated_sprite.flip_h = true  # Face left
+		
+	quit()
 
 ## Returns the gravity based on the state of the player
 func getthegravity(input_dir : float = 0) -> float:
@@ -192,3 +194,7 @@ func _on_timer_timeout() -> void:
 func _on_dashgem_reset_dash() -> void:
 	dash_num = 1
 	dash_key_pressed = 0
+	
+func quit():
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
