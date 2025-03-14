@@ -1,14 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs4bmjgnknnp7"]
+[gd_scene load_steps=13 format=3 uid="uid://bs4bmjgnknnp7"]
 
 [ext_resource type="PackedScene" uid="uid://wak43to3duln" path="res://Scenes/level_template.tscn" id="1_r7e3t"]
 [ext_resource type="PackedScene" uid="uid://ihgce3xiwlvq" path="res://Scenes/killzone.tscn" id="2_eyl0s"]
 [ext_resource type="PackedScene" uid="uid://c0hb4qjimtshi" path="res://Scenes/nextlevel.tscn" id="3_7yirj"]
+[ext_resource type="Texture2D" uid="uid://bnxfxxg2q5j5f" path="res://Assets/sine.png" id="4_t8c31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x41ji"]
 size = Vector2(11, 380)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3lcp"]
 size = Vector2(8, 325)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc141"]
+atlas = ExtResource("4_t8c31")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy6i0"]
+atlas = ExtResource("4_t8c31")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_167vu"]
+atlas = ExtResource("4_t8c31")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1k1j"]
+atlas = ExtResource("4_t8c31")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ahh4"]
+atlas = ExtResource("4_t8c31")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dl55b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc141")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy6i0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_167vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1k1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ahh4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="level_3" instance=ExtResource("1_r7e3t")]
 
@@ -32,3 +76,8 @@ shape = SubResource("RectangleShape2D_t3lcp")
 
 [node name="nextlevel" parent="." index="4" instance=ExtResource("3_7yirj")]
 position = Vector2(2376, -368)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
+position = Vector2(1329, 16)
+sprite_frames = SubResource("SpriteFrames_dl55b")
+frame_progress = 0.120918

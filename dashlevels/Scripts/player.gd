@@ -191,3 +191,4 @@ func _on_timer_timeout() -> void:
 
 func _on_dashgem_reset_dash() -> void:
 	dash_num = 1
+	dash_key_pressed = 0
