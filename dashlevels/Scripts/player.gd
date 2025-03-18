@@ -53,7 +53,7 @@ func _physics_process(delta) -> void:
 	# Get inputs
 	var horizontal_input := Input.get_axis("left", "right")
 	var jump_attempted := Input.is_action_just_pressed("jump")
-	var is_dashing := Input.is_action_pressed("dash") # Check if dash is pressed
+	var is_dashing := Input.is_action_pressed("wavedash") # Check if dash is pressed
 	# Change animations
 	if is_on_floor():
 		if horizontal_input != 0 and not is_airdashing:
