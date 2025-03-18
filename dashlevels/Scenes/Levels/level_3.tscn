@@ -80,4 +80,5 @@ position = Vector2(2376, -368)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 position = Vector2(1329, 16)
 sprite_frames = SubResource("SpriteFrames_dl55b")
+autoplay = "default"
 frame_progress = 0.120918

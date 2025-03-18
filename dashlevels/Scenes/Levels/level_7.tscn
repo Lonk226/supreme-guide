@@ -55,6 +55,24 @@ position = Vector2(-844, -1128)
 [node name="dashgem14" parent="Dashgems" index="13" instance=ExtResource("2_wyqrv")]
 position = Vector2(-844, -1128)
 
+[node name="dashgem15" parent="Dashgems" index="14" instance=ExtResource("2_wyqrv")]
+position = Vector2(-844, -1159)
+
+[node name="dashgem16" parent="Dashgems" index="15" instance=ExtResource("2_wyqrv")]
+position = Vector2(-844, -1189)
+
+[node name="dashgem17" parent="Dashgems" index="16" instance=ExtResource("2_wyqrv")]
+position = Vector2(-844, -1220)
+
+[node name="dashgem18" parent="Dashgems" index="17" instance=ExtResource("2_wyqrv")]
+position = Vector2(-844, -1250)
+
+[node name="dashgem19" parent="Dashgems" index="18" instance=ExtResource("2_wyqrv")]
+position = Vector2(-844, -1278)
+
+[node name="dashgem20" parent="Dashgems" index="19" instance=ExtResource("2_wyqrv")]
+position = Vector2(-844, -1307)
+
 [node name="nextlevel" parent="." index="4" instance=ExtResource("3_vb8ac")]
 position = Vector2(267, -1120)
 
@@ -72,3 +90,9 @@ position = Vector2(267, -1120)
 [connection signal="reset_dash" from="Dashgems/dashgem12" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="Dashgems/dashgem13" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="Dashgems/dashgem14" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="reset_dash" from="Dashgems/dashgem15" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="reset_dash" from="Dashgems/dashgem16" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="reset_dash" from="Dashgems/dashgem17" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="reset_dash" from="Dashgems/dashgem18" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="reset_dash" from="Dashgems/dashgem19" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="reset_dash" from="Dashgems/dashgem20" to="Player" method="_on_dashgem_reset_dash"]
