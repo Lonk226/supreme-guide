@@ -30,10 +30,13 @@ var is_airdashing = false
 var dash_timer = Timer
 
 var is_attacking = false
-var attack2 = false
-var is_attacking2 = false
 
-var pause = false
+var paused = false
+
+var death_count = 0
+var dead = false
+
+signal hit()
 
 func _ready() -> void:
 	# Set up input buffer timer
@@ -50,6 +53,13 @@ func _ready() -> void:
 	coyote_timer.timeout.connect(coyote_timeout)
 
 func _physics_process(delta) -> void:
+	if dead:
+		animated_sprite.play("Death")
+	if dead == true:
+		return
+	if is_attacking:
+		animated_sprite.play("Sword")
+		return
 	# Get inputs
 	var horizontal_input := Input.get_axis("left", "right")
 	var jump_attempted := Input.is_action_just_pressed("jump")
@@ -62,8 +72,8 @@ func _physics_process(delta) -> void:
 			animated_sprite.play("AirDash")
 		elif is_attacking:
 			animated_sprite.play("Sword")
-		elif is_attacking2:
-			animated_sprite.play("Sword2")
+		elif dead:
+			animated_sprite.play("Death")
 		else:
 			animated_sprite.play("Idle") # Play idle animation
 	elif is_on_wall() and velocity.y > 0:
@@ -125,21 +135,22 @@ func _physics_process(delta) -> void:
 	if Input.is_action_just_pressed("attack"):
 		if is_attacking == false:
 			attack()
-			attack2 = true
-			await get_tree().create_timer(0.6).timeout
-			attack2 = false
-		elif attack2 == true:
-			Attack2()
 	
 	 # Change player direction using flip_h
 	if horizontal_input > 0 and !is_facing_right:
 		is_facing_right = true
 		animated_sprite.flip_h = false  # Face right
+		
 	elif horizontal_input < 0 and is_facing_right:
 		is_facing_right = false
 		animated_sprite.flip_h = true  # Face left
-		
+	
 	quit()
+	
+	if not is_attacking:
+		$SwordHitboxRight/CollisionShape2D.disabled = true
+		$SwordHitboxLeft/CollisionShape2D.disabled = true
+		
 
 ## Returns the gravity based on the state of the player
 func getthegravity(input_dir : float = 0) -> float:
@@ -153,7 +164,7 @@ func getthegravity(input_dir : float = 0) -> float:
 func coyote_timeout() -> void:
 	coyote_jump_available = false
 	
-func dash():
+func dash(): #do the dash
 	if dash_key_pressed == 1:
 		is_airdashing = true
 	else:
@@ -166,7 +177,7 @@ func dash():
 		velocity.x = -dash_speed
 		dash_started()
 		
-func dash_started():
+func dash_started(): #check if dashing
 	if is_airdashing == true:
 		dash_key_pressed = 1
 		await get_tree().create_timer(0.15).timeout
@@ -176,25 +187,43 @@ func dash_started():
 		return
 		
 		
-func attack():
+func attack(): #tell if is attacking
 	is_attacking = true
+	if is_facing_right:
+		$SwordHitboxRight/CollisionShape2D.disabled = false
+	elif not is_facing_right:
+		$SwordHitboxLeft/CollisionShape2D.disabled = false
 	await get_tree().create_timer(0.4).timeout
 	is_attacking = false
-	
-func Attack2():
-	is_attacking2 = true
-	await get_tree().create_timer(0.6).timeout
-	is_attacking2 = false
+	$SwordHitboxRight/CollisionShape2D.disabled = true
+	$SwordHitboxLeft/CollisionShape2D.disabled = true
 
-func _on_timer_timeout() -> void:
-	attack2 = true
-	await get_tree().create_timer(0.6).timeout
-	attack2 = false
-
-func _on_dashgem_reset_dash() -> void:
+func _on_dashgem_reset_dash() -> void: #reset your dash
 	dash_num = 1
 	dash_key_pressed = 0
 	
-func quit():
+func quit(): #quit the game with esc
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+
+
+func _on_killzone_death() -> void: #handle death
+	die()
+	
+func die():
+	dead = true
+	await get_tree().create_timer(0.66666666666666).timeout
+	dead = false
+	position.x = 0
+	position.y = 0
+	get_tree().reload_current_scene()
+	
+func pause():
+	if Input.is_action_just_pressed("Pause") and paused == false:
+		paused = true
+	if Input.is_action_just_pressed("Pause") and paused == true:
+		paused = false
+
+
+func _on_enemy_death() -> void:
+	die()

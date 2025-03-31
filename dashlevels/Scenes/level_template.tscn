@@ -88,7 +88,7 @@ sources/3 = SubResource("TileSetAtlasSource_w1i01")
 sources/4 = SubResource("TileSetAtlasSource_2wl1m")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xopja"]
-distance = -548.0
+distance = -530.0
 
 [node name="level_template" type="Node2D"]
 
@@ -106,5 +106,7 @@ layer_1/tile_data = PackedInt32Array(-8061003, 262144, 4, -7995467, 196608, 4, -
 [node name="killzone" parent="." instance=ExtResource("3_b6m8b")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
-position = Vector2(2, 0)
+position = Vector2(0, -300)
 shape = SubResource("WorldBoundaryShape2D_xopja")
+
+[connection signal="death" from="killzone" to="Player" method="_on_killzone_death"]

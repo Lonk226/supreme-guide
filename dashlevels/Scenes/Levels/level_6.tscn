@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0rhvn54ofbvn"]
+[gd_scene load_steps=6 format=3 uid="uid://b0rhvn54ofbvn"]
 
 [ext_resource type="PackedScene" uid="uid://wak43to3duln" path="res://Scenes/level_template.tscn" id="1_rae7q"]
 [ext_resource type="Script" uid="uid://cbftnvij6u70w" path="res://Scripts/dashgem.gd" id="2_n8t13"]
 [ext_resource type="PackedScene" uid="uid://ci7g2f1y4q4o4" path="res://Scenes/dashgem.tscn" id="3_8tavu"]
-[ext_resource type="PackedScene" uid="uid://ihgce3xiwlvq" path="res://Scenes/killzone.tscn" id="3_ik81l"]
 [ext_resource type="PackedScene" uid="uid://c0hb4qjimtshi" path="res://Scenes/nextlevel.tscn" id="4_vrotf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7uay"]
@@ -19,23 +18,21 @@ layer_1/tile_data = PackedInt32Array(-8061003, 262144, 4, -7995467, 262144, 5, -
 [node name="CollisionShape2D" parent="killzone" index="1"]
 scale = Vector2(1.83321, 1.10455)
 
-[node name="killzone2" parent="." index="3" instance=ExtResource("3_ik81l")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone2" index="1"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="killzone" index="2"]
 position = Vector2(335.5, -502.5)
 scale = Vector2(1.05923, 1.01215)
 shape = SubResource("RectangleShape2D_h7uay")
 
-[node name="dashgem" parent="." index="4" instance=ExtResource("3_8tavu")]
+[node name="dashgem" parent="." index="3" instance=ExtResource("3_8tavu")]
 position = Vector2(389, -86)
 
-[node name="dashgem2" parent="." index="5" instance=ExtResource("3_8tavu")]
+[node name="dashgem2" parent="." index="4" instance=ExtResource("3_8tavu")]
 position = Vector2(792, -202)
 
-[node name="dashgem3" parent="." index="6" instance=ExtResource("3_8tavu")]
+[node name="dashgem3" parent="." index="5" instance=ExtResource("3_8tavu")]
 position = Vector2(916, -350)
 
-[node name="nextlevel" parent="." index="7" instance=ExtResource("4_vrotf")]
+[node name="nextlevel" parent="." index="6" instance=ExtResource("4_vrotf")]
 position = Vector2(-904, -1216)
 
 [connection signal="reset_dash" from="dashgem" to="Player" method="_on_dashgem_reset_dash"]
