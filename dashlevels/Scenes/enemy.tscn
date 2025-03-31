@@ -1,21 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://wuhuerndsli"]
 
 [ext_resource type="Script" uid="uid://dyg6m1ox512l2" path="res://Scripts/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://dm2pvuiruns2m" path="res://Assets/icon.svg" id="1_hghv2"]
+[ext_resource type="Texture2D" uid="uid://brftweeujw8jk" path="res://Assets/Final Boss.png" id="2_1f0kj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
-size = Vector2(20, 28)
+size = Vector2(20, 25)
 
 [node name="Enemy" type="Area2D"]
 script = ExtResource("1_1f0kj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_hghv2")
+texture = ExtResource("2_1f0kj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_hghv2")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

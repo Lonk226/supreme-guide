@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wak43to3duln"]
+[gd_scene load_steps=19 format=3 uid="uid://wak43to3duln"]
 
 [ext_resource type="Texture2D" uid="uid://1ibp436ih5e1" path="res://Assets/Tileset.png" id="1_yt1cq"]
 [ext_resource type="PackedScene" uid="uid://bhov86vf3wm2n" path="res://Scenes/player.tscn" id="2_2tgdi"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cygicqw8pdjnx" path="res://Assets/Tileset-28.png.png" id="3_cqfjl"]
 [ext_resource type="Texture2D" uid="uid://l3i26bpct6jf" path="res://Assets/Tileset-29.png.png" id="4_fytk4"]
 [ext_resource type="Texture2D" uid="uid://dpd7gprldtli2" path="res://Assets/Tileset-30.png.png" id="5_phhhc"]
+[ext_resource type="Texture2D" uid="uid://b6r2wqkoo4qwq" path="res://Assets/space.png" id="6_hbq6r"]
+[ext_resource type="Texture2D" uid="uid://432nx074aypr" path="res://Assets/space (2).png" id="7_7kbhc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mpbfh"]
 texture = ExtResource("1_yt1cq")
@@ -79,6 +81,15 @@ texture = ExtResource("4_fytk4")
 texture = ExtResource("5_phhhc")
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yj0tv"]
+texture = ExtResource("6_hbq6r")
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ka7v4"]
+texture = ExtResource("7_7kbhc")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSet" id="TileSet_762v7"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_mpbfh")
@@ -86,6 +97,8 @@ sources/1 = SubResource("TileSetAtlasSource_0assv")
 sources/2 = SubResource("TileSetAtlasSource_4fqhl")
 sources/3 = SubResource("TileSetAtlasSource_w1i01")
 sources/4 = SubResource("TileSetAtlasSource_2wl1m")
+sources/5 = SubResource("TileSetAtlasSource_yj0tv")
+sources/7 = SubResource("TileSetAtlasSource_ka7v4")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xopja"]
 distance = -530.0

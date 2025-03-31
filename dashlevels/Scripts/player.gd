@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
+@onready var camera: Camera2D = $Camera2D
 
 const SPEED = 250.0 # Base horizontal movement speed
 const ACCELERATION = 800.0 # Base acceleration
@@ -53,6 +54,14 @@ func _ready() -> void:
 	coyote_timer.timeout.connect(coyote_timeout)
 
 func _physics_process(delta) -> void:
+	var current_scene_file = get_tree().current_scene.scene_file_path
+	print(current_scene_file)
+	if current_scene_file == "res://Scenes/github_boss.tscn":
+		camera.limit_bottom = 162
+		camera.limit_left = -288
+		camera.limit_right = 288
+		camera.limit_top = -162
+
 	if dead:
 		animated_sprite.play("Death")
 	if dead == true:
@@ -190,10 +199,12 @@ func dash_started(): #check if dashing
 func attack(): #tell if is attacking
 	is_attacking = true
 	if is_facing_right:
+		await get_tree().create_timer(0.1).timeout
 		$SwordHitboxRight/CollisionShape2D.disabled = false
 	elif not is_facing_right:
+		await get_tree().create_timer(0.1).timeout
 		$SwordHitboxLeft/CollisionShape2D.disabled = false
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.3).timeout
 	is_attacking = false
 	$SwordHitboxRight/CollisionShape2D.disabled = true
 	$SwordHitboxLeft/CollisionShape2D.disabled = true
