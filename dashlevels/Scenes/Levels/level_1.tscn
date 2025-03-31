@@ -14,6 +14,6 @@ layer_1/tile_data = PackedInt32Array(-8061003, 196608, 5, -7995467, 262144, 3, -
 position = Vector2(-248, -1376)
 
 [node name="Enemy" parent="." index="4" groups=["Enemy"] instance=ExtResource("3_3mqfk")]
-position = Vector2(110, -32)
+position = Vector2(-256, -32)
 
 [connection signal="death" from="Enemy" to="Player" method="_on_enemy_death"]
