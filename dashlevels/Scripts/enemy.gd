@@ -1,23 +1,35 @@
 extends Area2D
 
-@onready var sprite: Sprite2D = $Sprite2D
-
+@onready var path_follow: PathFollow2D = $".."
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var dead = false
+var health = 10
+var speed = 250
 
 signal death()
 
+func _process(delta: float) -> void:
+	path_follow.progress += speed * delta
+	if health >= 4:
+		animated_sprite.play("1p")
+	if health <= 3:
+		animated_sprite.play("2p")
+		speed = 400
+	
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Sword"):
-		dead = true
-		sprite.modulate = Color.RED
+		animated_sprite.modulate = Color.RED
 		await get_tree().create_timer(0.025).timeout
-		sprite.modulate = Color.WHITE
+		animated_sprite.modulate = Color.WHITE
 		await get_tree().create_timer(0.025).timeout
-		sprite.modulate = Color.RED
+		animated_sprite.modulate = Color.RED
 		await get_tree().create_timer(0.025).timeout
-		sprite.modulate = Color.WHITE
+		animated_sprite.modulate = Color.WHITE
 		await get_tree().create_timer(0.025).timeout
-		queue_free()
+		health -= 1
+		if health == 0:
+			dead = true
+			queue_free()
 
 
 func _on_body_entered(body: Node2D) -> void:

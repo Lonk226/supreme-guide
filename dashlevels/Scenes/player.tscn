@@ -448,9 +448,10 @@ radius = 12.0
 height = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tx1dd"]
-size = Vector2(38, 47)
+size = Vector2(38, 43.5)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 5
 script = ExtResource("1_32x25")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -472,20 +473,12 @@ limit_smoothed = true
 wait_time = 0.5
 one_shot = true
 
-[node name="SwordHitboxRight" type="Area2D" parent="." groups=["Sword"]]
+[node name="Dashcollideer" type="Area2D" parent="." groups=["Sword"]]
 position = Vector2(0, -40)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitboxRight"]
-position = Vector2(43, 16.5)
-shape = SubResource("RectangleShape2D_tx1dd")
-
-[node name="SwordHitboxLeft" type="Area2D" parent="." groups=["Sword"]]
-position = Vector2(0, -40)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitboxLeft"]
-position = Vector2(-43, 16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dashcollideer"]
+position = Vector2(0, 21.75)
 shape = SubResource("RectangleShape2D_tx1dd")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="SwordHitboxRight" to="." method="_on_sword_hitbox_right_body_entered"]
-[connection signal="body_entered" from="SwordHitboxLeft" to="." method="_on_sword_hitbox_left_body_entered"]
+[connection signal="body_entered" from="Dashcollideer" to="." method="_on_sword_hitbox_left_body_entered"]

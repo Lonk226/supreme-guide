@@ -30,12 +30,12 @@ var dash_key_pressed = 0
 var is_airdashing = false
 var dash_timer = Timer
 
-var is_attacking = false
-
 var paused = false
 
 var death_count = 0
 var dead = false
+var invincible = false
+var cannot_move = false
 
 signal hit()
 
@@ -52,22 +52,23 @@ func _ready() -> void:
 	coyote_timer.one_shot = true
 	add_child(coyote_timer)
 	coyote_timer.timeout.connect(coyote_timeout)
+	
+	$Dashcollideer/CollisionShape2D.disabled = true
 
 func _physics_process(delta) -> void:
 	var current_scene_file = get_tree().current_scene.scene_file_path
-	print(current_scene_file)
 	if current_scene_file == "res://Scenes/github_boss.tscn":
 		camera.limit_bottom = 162
 		camera.limit_left = -288
 		camera.limit_right = 288
 		camera.limit_top = -162
 
+	
+	if cannot_move == true:
+		return
 	if dead:
 		animated_sprite.play("Death")
 	if dead == true:
-		return
-	if is_attacking:
-		animated_sprite.play("Sword")
 		return
 	# Get inputs
 	var horizontal_input := Input.get_axis("left", "right")
@@ -79,8 +80,6 @@ func _physics_process(delta) -> void:
 			animated_sprite.play("Run") # Play walking animation
 		elif is_airdashing:
 			animated_sprite.play("AirDash")
-		elif is_attacking:
-			animated_sprite.play("Sword")
 		elif dead:
 			animated_sprite.play("Death")
 		else:
@@ -141,9 +140,6 @@ func _physics_process(delta) -> void:
 	# Apply velocity
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("attack"):
-		if is_attacking == false:
-			attack()
 	
 	 # Change player direction using flip_h
 	if horizontal_input > 0 and !is_facing_right:
@@ -155,11 +151,6 @@ func _physics_process(delta) -> void:
 		animated_sprite.flip_h = true  # Face left
 	
 	quit()
-	
-	if not is_attacking:
-		$SwordHitboxRight/CollisionShape2D.disabled = true
-		$SwordHitboxLeft/CollisionShape2D.disabled = true
-		
 
 ## Returns the gravity based on the state of the player
 func getthegravity(input_dir : float = 0) -> float:
@@ -189,26 +180,17 @@ func dash(): #do the dash
 func dash_started(): #check if dashing
 	if is_airdashing == true:
 		dash_key_pressed = 1
+		invincible = true
+		$Dashcollideer/CollisionShape2D.disabled = false
 		await get_tree().create_timer(0.15).timeout
 		is_airdashing = false
 		dash_key_pressed = 0
+		$Dashcollideer/CollisionShape2D.disabled = true
+		await get_tree().create_timer(0.6).timeout
+		invincible = false
 	else:
 		return
 		
-		
-func attack(): #tell if is attacking
-	is_attacking = true
-	if is_facing_right:
-		await get_tree().create_timer(0.1).timeout
-		$SwordHitboxRight/CollisionShape2D.disabled = false
-	elif not is_facing_right:
-		await get_tree().create_timer(0.1).timeout
-		$SwordHitboxLeft/CollisionShape2D.disabled = false
-	await get_tree().create_timer(0.3).timeout
-	is_attacking = false
-	$SwordHitboxRight/CollisionShape2D.disabled = true
-	$SwordHitboxLeft/CollisionShape2D.disabled = true
-
 func _on_dashgem_reset_dash() -> void: #reset your dash
 	dash_num = 1
 	dash_key_pressed = 0
@@ -237,4 +219,5 @@ func pause():
 
 
 func _on_enemy_death() -> void:
-	die()
+	if not invincible:
+		die()
