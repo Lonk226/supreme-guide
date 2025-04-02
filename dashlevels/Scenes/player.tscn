@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://bhov86vf3wm2n"]
 
 [ext_resource type="Script" uid="uid://cxi8kjtse0xkv" path="res://Scripts/player.gd" id="1_32x25"]
-[ext_resource type="Texture2D" uid="uid://clxyxyvaq86oi" path="res://Assets/miles.png" id="2_vgqql"]
+[ext_resource type="Texture2D" uid="uid://b0dqxq57glyyy" path="res://Assets/miles2.png" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://cidvgw8q8ud3m" path="res://Assets/120x80_PNGSheets/_Death.png" id="3_gu6xe"]
 [ext_resource type="Texture2D" uid="uid://bx3riow8j1ksa" path="res://Assets/mild mannered.png" id="5_x3wgy"]
 
@@ -226,7 +226,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3smsa"]
-size = Vector2(15, 28)
+size = Vector2(12, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tx1dd"]
 size = Vector2(38, 43.5)
@@ -238,12 +238,12 @@ script = ExtResource("1_32x25")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ysqk1")
-animation = &"Wallslide"
+animation = &"AirDash"
 autoplay = "Idle"
-frame_progress = 0.234371
+frame_progress = 0.43955
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -14)
+position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_3smsa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
