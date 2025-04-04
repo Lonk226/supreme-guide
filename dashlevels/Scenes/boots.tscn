@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5tdxsa4ux7xu"]
+
+[ext_resource type="Texture2D" uid="uid://bv1bcrkydoj4f" path="res://Assets/boots.png" id="1_8tabh"]
+[ext_resource type="Script" uid="uid://c0hk4d87wimt" path="res://Scripts/boots.gd" id="1_mfpm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfpm2"]
+size = Vector2(16, 15)
+
+[node name="Boots" type="Area2D"]
+script = ExtResource("1_mfpm2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8tabh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_mfpm2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

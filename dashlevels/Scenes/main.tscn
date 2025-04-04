@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://i4i681u2lt2p"]
+[gd_scene load_steps=11 format=3 uid="uid://i4i681u2lt2p"]
 
 [ext_resource type="Script" uid="uid://c3wyovv8y7ng7" path="res://Scripts/main.gd" id="1_hptm8"]
 [ext_resource type="PackedScene" uid="uid://bhov86vf3wm2n" path="res://Scenes/player.tscn" id="1_ynf5e"]
+[ext_resource type="PackedScene" uid="uid://dok6ww5fjmn75" path="res://Scenes/booster.tscn" id="2_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://c0hb4qjimtshi" path="res://Scenes/nextlevel.tscn" id="2_hptm8"]
 [ext_resource type="PackedScene" uid="uid://cvf3lae186ilv" path="res://Scenes/main_menu.tscn" id="3_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://wak43to3duln" path="res://Scenes/level_template.tscn" id="4_6iyac"]
@@ -12,6 +13,8 @@
 
 [node name="Main" type="Node"]
 script = ExtResource("1_hptm8")
+
+[node name="Booster" parent="." instance=ExtResource("2_d1ilt")]
 
 [node name="Player" parent="." instance=ExtResource("1_ynf5e")]
 

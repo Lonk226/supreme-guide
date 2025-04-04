@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clxyxyvaq86oi"
-path="res://.godot/imported/miles.png-61fa9ce5a3fc72eebbc47d0d3e094707.ctex"
+uid="uid://0ilfoobwvj4p"
+path="res://.godot/imported/pedestal.png-f63315424493b4e8d2ad1e4be9fe5f35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/miles.png"
-dest_files=["res://.godot/imported/miles.png-61fa9ce5a3fc72eebbc47d0d3e094707.ctex"]
+source_file="res://Assets/pedestal.png"
+dest_files=["res://.godot/imported/pedestal.png-f63315424493b4e8d2ad1e4be9fe5f35.ctex"]
 
 [params]
 

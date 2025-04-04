@@ -39,6 +39,11 @@ var cannot_move = false
 
 signal hit()
 
+var boost = true
+var boots = true
+var getboost = false
+var getboots = false
+
 func _ready() -> void:
 	# Set up input buffer timer
 	input_buffer = Timer.new()
@@ -62,6 +67,12 @@ func _physics_process(delta) -> void:
 		camera.limit_left = -288
 		camera.limit_right = 288
 		camera.limit_top = -162
+	if current_scene_file == "res://Scenes/world.tscn" and not getboost:
+		boost = false
+	if current_scene_file == "res://Scenes/world.tscn" and not getboots:
+		boots = false
+	if current_scene_file == "res://Scenes/world.tscn":
+		camera.limit_bottom = 10000
 
 	
 	if cannot_move == true:
@@ -84,7 +95,7 @@ func _physics_process(delta) -> void:
 			animated_sprite.play("Death")
 		else:
 			animated_sprite.play("Idle") # Play idle animation
-	elif is_on_wall() and velocity.y > 0:
+	elif is_on_wall() and velocity.y > 0 and boots:
 		animated_sprite.play("Wallslide") # Play wall sliding animation
 	elif velocity.y < 0:
 		animated_sprite.play("Jump") # Play jumping animation
@@ -98,7 +109,7 @@ func _physics_process(delta) -> void:
 		if coyote_jump_available: # If jumping on the ground
 			velocity.y = JUMP_VELOCITY
 			coyote_jump_available = false
-		elif is_on_wall() and horizontal_input != 0: # If jumping off a wall
+		elif is_on_wall() and horizontal_input != 0 and boots: # If jumping off a wall
 			velocity.y = WALL_JUMP_VELOCITY
 			velocity.x = WALL_JUMP_PUSHBACK * -sign(horizontal_input)
 		elif jump_attempted: # Queue input buffer if jump was attempted
@@ -132,10 +143,11 @@ func _physics_process(delta) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
 	
-	if Input.is_action_just_pressed("wavedash") and dash_key_pressed == 0 and dash_num >= 1:
-		dash_key_pressed = 1
-		dash_num -= 1
-		dash()
+	if boost:
+		if Input.is_action_just_pressed("wavedash") and dash_key_pressed == 0 and dash_num >= 1:
+			dash_key_pressed = 1
+			dash_num -= 1
+			dash()
 
 	# Apply velocity
 	move_and_slide()
@@ -156,7 +168,7 @@ func _physics_process(delta) -> void:
 func getthegravity(input_dir : float = 0) -> float:
 	if Input.is_action_pressed("fast_fall"):
 		return FAST_FALL_GRAVITY
-	if is_on_wall_only() and velocity.y > 0 and input_dir != 0:
+	if is_on_wall_only() and velocity.y > 0 and input_dir != 0 and boots:
 		return WALL_GRAVITY
 	return GRAVITY if velocity.y < 0 else FALL_GRAVITY
 
@@ -221,3 +233,13 @@ func pause():
 func _on_enemy_death() -> void:
 	if not invincible:
 		die()
+
+
+func _on_booster_getboost() -> void:
+	boost = true
+	getboost = true
+
+
+func _on_boots_getboots() -> void:
+	boots = true
+	getboots = true
