@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://wak43to3duln" path="res://Scenes/level_template.tscn" id="1_looeo"]
 [ext_resource type="PackedScene" uid="uid://ci7g2f1y4q4o4" path="res://Scenes/dashgem.tscn" id="2_3vdy5"]
-[ext_resource type="PackedScene" uid="uid://biwysfmbc6ivl" path="res://Scenes/bossdoor.tscn" id="3_08747"]
+[ext_resource type="PackedScene" uid="uid://c0hb4qjimtshi" path="res://Scenes/nextlevel.tscn" id="3_08747"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_22gpn"]
 size = Vector2(8, 201)
@@ -61,7 +61,7 @@ position = Vector2(374, -280)
 [node name="dashgem6" parent="." index="7" instance=ExtResource("2_3vdy5")]
 position = Vector2(1180, -950)
 
-[node name="Bossdoor" parent="." index="8" instance=ExtResource("3_08747")]
+[node name="nextlevel" parent="." index="8" instance=ExtResource("3_08747")]
 position = Vector2(1482, -880)
 
 [connection signal="reset_dash" from="dashgem" to="Player" method="_on_dashgem_reset_dash"]
