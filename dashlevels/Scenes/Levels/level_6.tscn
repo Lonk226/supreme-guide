@@ -38,3 +38,4 @@ position = Vector2(-904, -1216)
 [connection signal="reset_dash" from="dashgem" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="dashgem2" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="dashgem3" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="nextlvlanim" from="nextlevel" to="Player" method="_on_nextlevel_nextlvlanim"]

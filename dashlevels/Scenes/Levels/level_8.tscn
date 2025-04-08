@@ -88,6 +88,7 @@ position = Vector2(1507, -1431)
 [node name="dashgem24" parent="dashgems" index="23" instance=ExtResource("2_2apw5")]
 position = Vector2(1507, -1396)
 
+[connection signal="nextlvlanim" from="nextlevel" to="Player" method="_on_nextlevel_nextlvlanim"]
 [connection signal="reset_dash" from="dashgems/dashgem" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="dashgems/dashgem2" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="dashgems/dashgem3" to="Player" method="_on_dashgem_reset_dash"]

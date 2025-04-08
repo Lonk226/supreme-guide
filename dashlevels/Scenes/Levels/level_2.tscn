@@ -75,3 +75,5 @@ position = Vector2(57, -576)
 sprite_frames = SubResource("SpriteFrames_u40f0")
 autoplay = "default"
 frame_progress = 0.483554
+
+[connection signal="nextlvlanim" from="nextlevel" to="Player" method="_on_nextlevel_nextlvlanim"]

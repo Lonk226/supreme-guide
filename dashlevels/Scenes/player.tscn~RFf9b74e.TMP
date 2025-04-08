@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://bhov86vf3wm2n"]
+[gd_scene load_steps=68 format=3 uid="uid://bhov86vf3wm2n"]
 
 [ext_resource type="Script" uid="uid://cxi8kjtse0xkv" path="res://Scripts/player.gd" id="1_32x25"]
 [ext_resource type="Texture2D" uid="uid://dg10i2ard3gj1" path="res://Assets/120x80_PNGSheets/_Idle.png" id="1_vyvkx"]
@@ -9,11 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://sysvtbp0etjg" path="res://Assets/120x80_PNGSheets/_Jump.png" id="4_ye6a2"]
 [ext_resource type="Texture2D" uid="uid://dnk8ylidb6n11" path="res://Assets/120x80_PNGSheets/_wallslide flipped.png" id="6_0hyfe"]
 [ext_resource type="Texture2D" uid="uid://cjac0uke6k5rt" path="res://Assets/120x80_PNGSheets/_Attack.png" id="7_7bemc"]
-[ext_resource type="Texture2D" uid="uid://dy4blw64080vl" path="res://Assets/120x80_PNGSheets/_Roll.png" id="10_tx1dd"]
-[ext_resource type="Script" uid="uid://dr7ueoxnpby7n" path="res://Scripts/progress_bar.gd" id="11_gymyn"]
-[ext_resource type="Texture2D" uid="uid://bg5ugd55bqqte" path="res://Assets/portrait.png" id="12_pu2lt"]
-[ext_resource type="Texture2D" uid="uid://cbrrglhknyaqx" path="res://Assets/healthbarUnder.png" id="13_7dp3o"]
-[ext_resource type="Texture2D" uid="uid://41b8a2ugjs3j" path="res://Assets/healthbarProgress.png" id="14_h4iuc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3enw"]
 atlas = ExtResource("2_n53or")
@@ -166,54 +161,6 @@ region = Rect2(120, 0, 120, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dm064"]
 atlas = ExtResource("4_ye6a2")
 region = Rect2(240, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(0, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(120, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(240, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7dp3o"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(360, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h4iuc"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(480, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fd4e3"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(600, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qqcod"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(720, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_igrcy"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(840, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fs7ks"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(960, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l6n3p"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(1080, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_olqyp"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(1200, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpjfl"]
-atlas = ExtResource("10_tx1dd")
-region = Rect2(1320, 0, 120, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4hrec"]
 atlas = ExtResource("2_0fr8y")
@@ -431,47 +378,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gymyn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pu2lt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ukyrk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7dp3o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h4iuc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fd4e3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qqcod")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_igrcy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fs7ks")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l6n3p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_olqyp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wpjfl")
-}],
-"loop": true,
-"name": &"Roll",
-"speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_4hrec")
 }, {
 "duration": 1.0,
@@ -550,9 +456,8 @@ script = ExtResource("1_32x25")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 sprite_frames = SubResource("SpriteFrames_ysqk1")
-animation = &"Roll"
+animation = &"Wallslide"
 autoplay = "Idle"
-frame_progress = 0.268944
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -17.5)
@@ -567,37 +472,12 @@ limit_smoothed = true
 wait_time = 0.5
 one_shot = true
 
-[node name="Dashcollider" type="Area2D" parent="." groups=["Sword"]]
+[node name="Dashcollideer" type="Area2D" parent="." groups=["Sword"]]
 position = Vector2(0, -40)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dashcollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dashcollideer"]
 position = Vector2(0, 21.75)
 shape = SubResource("RectangleShape2D_tx1dd")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-z_index = 13
-position = Vector2(133, 583)
-scale = Vector2(0.519531, 0.519531)
-texture = ExtResource("12_pu2lt")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 140.0
-offset_top = 577.0
-offset_right = 557.0
-offset_bottom = 619.0
-max_value = 3.0
-value = 3.0
-nine_patch_stretch = true
-stretch_margin_left = 4
-stretch_margin_top = 4
-stretch_margin_right = 4
-stretch_margin_bottom = 4
-texture_under = ExtResource("13_7dp3o")
-texture_progress = ExtResource("14_h4iuc")
-script = ExtResource("11_gymyn")
-
-[connection signal="hurt" from="." to="CanvasLayer/TextureProgressBar" method="_on_player_hurt"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="Dashcollider" to="." method="_on_sword_hitbox_left_body_entered"]
+[connection signal="body_entered" from="Dashcollideer" to="." method="_on_sword_hitbox_left_body_entered"]

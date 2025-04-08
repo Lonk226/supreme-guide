@@ -46,3 +46,5 @@ shape = SubResource("RectangleShape2D_1djqc")
 
 [node name="nextlevel" parent="." index="3" instance=ExtResource("2_8o83e")]
 position = Vector2(1064, -1792)
+
+[connection signal="nextlvlanim" from="nextlevel" to="Player" method="_on_nextlevel_nextlvlanim"]

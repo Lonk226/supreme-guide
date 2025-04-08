@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b57giyfn485vk"
-path="res://.godot/imported/Tileset ice.png-0ea2676dbb44414dd97e55ccdc85524f.ctex"
+uid="uid://41b8a2ugjs3j"
+path="res://.godot/imported/healthbarProgress.png-a748215137f2124c043adc938a3a090f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/120x80_PNGSheets/Tileset ice.png"
-dest_files=["res://.godot/imported/Tileset ice.png-0ea2676dbb44414dd97e55ccdc85524f.ctex"]
+source_file="res://Assets/healthbarProgress.png"
+dest_files=["res://.godot/imported/healthbarProgress.png-a748215137f2124c043adc938a3a090f.ctex"]
 
 [params]
 

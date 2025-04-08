@@ -3,19 +3,22 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 @onready var camera: Camera2D = $Camera2D
+@onready var player: CharacterBody2D = $"."
+@onready var nextlevel: Area2D = $"../nextlevel"
 
 const SPEED = 250.0 # Base horizontal movement speed
 const ACCELERATION = 800.0 # Base acceleration
-const FRICTION = 6000.0 # Base friction
+var FRICTION = 6000.0 # Base friction
 const GRAVITY = 2000.0 # Gravity when moving upwards
 const FALL_GRAVITY = 4000.0 # Gravity when falling downwards
 const FAST_FALL_GRAVITY = 5000.0 # Gravity while holding "fast_fall"
-const WALL_GRAVITY = 25.0 # Gravity while sliding on a wall
+const WALL_GRAVITY = 25 # Gravity while sliding on a wall
 const JUMP_VELOCITY = -500.0 # Maximum jump strength
 const WALL_JUMP_VELOCITY = -700.0 # Maximum wall jump strength
 const WALL_JUMP_PUSHBACK = 300.0 # Horizontal push strength off walls
 const INPUT_BUFFER_PATIENCE = 0.1 # Input queue patience time
 const COYOTE_TIME = 0.08 # Coyote patience time
+var health = 3 # Player Health
 
 var input_buffer : Timer # Reference to the input queue timer
 var coyote_timer : Timer # Reference to the coyote timer
@@ -38,6 +41,7 @@ var invincible = false
 var cannot_move = false
 
 signal hit()
+signal hurt()
 
 var boost = true
 var boots = true
@@ -58,7 +62,7 @@ func _ready() -> void:
 	add_child(coyote_timer)
 	coyote_timer.timeout.connect(coyote_timeout)
 	
-	$Dashcollideer/CollisionShape2D.disabled = true
+	$Dashcollider/CollisionShape2D.disabled = true
 
 func _physics_process(delta) -> void:
 	var current_scene_file = get_tree().current_scene.scene_file_path
@@ -73,6 +77,8 @@ func _physics_process(delta) -> void:
 		boots = false
 	if current_scene_file == "res://Scenes/world.tscn":
 		camera.limit_bottom = 10000
+	if current_scene_file == "res://Scenes/Levels/level_11.tscn":
+		FRICTION = 200
 
 	
 	if cannot_move == true:
@@ -193,11 +199,11 @@ func dash_started(): #check if dashing
 	if is_airdashing == true:
 		dash_key_pressed = 1
 		invincible = true
-		$Dashcollideer/CollisionShape2D.disabled = false
+		$Dashcollider/CollisionShape2D.disabled = false
 		await get_tree().create_timer(0.15).timeout
 		is_airdashing = false
 		dash_key_pressed = 0
-		$Dashcollideer/CollisionShape2D.disabled = true
+		$Dashcollider/CollisionShape2D.disabled = true
 		await get_tree().create_timer(0.6).timeout
 		invincible = false
 	else:
@@ -232,7 +238,7 @@ func pause():
 
 func _on_enemy_death() -> void:
 	if not invincible:
-		die()
+		damage()
 
 
 func _on_booster_getboost() -> void:
@@ -243,3 +249,32 @@ func _on_booster_getboost() -> void:
 func _on_boots_getboots() -> void:
 	boots = true
 	getboots = true
+
+
+func _on_nextlevel_nextlvlanim() -> void:
+	animated_sprite.play("Roll")
+	cannot_move = true
+	
+func damage():
+	health -= 1
+	hurt.emit()
+	if health == 0:
+		die()
+	animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.WHITE
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.WHITE
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.WHITE
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.WHITE
+	await get_tree().create_timer(0.025).timeout
+	if health == 0:
+		die()

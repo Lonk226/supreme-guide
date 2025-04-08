@@ -11,3 +11,5 @@ layer_1/tile_data = PackedInt32Array(-8061003, 196618, 4, -7995467, 262154, 4, -
 
 [node name="nextlevel" parent="." index="3" instance=ExtResource("2_tyv74")]
 position = Vector2(-1304, -1296)
+
+[connection signal="nextlvlanim" from="nextlevel" to="Player" method="_on_nextlevel_nextlvlanim"]

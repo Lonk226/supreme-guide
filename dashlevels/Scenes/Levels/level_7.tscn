@@ -118,3 +118,4 @@ position = Vector2(267, -1120)
 [connection signal="reset_dash" from="Dashgems/dashgem18" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="Dashgems/dashgem19" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="Dashgems/dashgem20" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="nextlvlanim" from="nextlevel" to="Player" method="_on_nextlevel_nextlvlanim"]
