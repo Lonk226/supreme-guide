@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://bhov86vf3wm2n"]
+[gd_scene load_steps=87 format=3 uid="uid://bhov86vf3wm2n"]
 
 [ext_resource type="Script" uid="uid://cxi8kjtse0xkv" path="res://Scripts/player.gd" id="1_32x25"]
 [ext_resource type="Texture2D" uid="uid://dg10i2ard3gj1" path="res://Assets/120x80_PNGSheets/_Idle.png" id="1_vyvkx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cidvgw8q8ud3m" path="res://Assets/120x80_PNGSheets/_Death.png" id="3_gu6xe"]
 [ext_resource type="Texture2D" uid="uid://sysvtbp0etjg" path="res://Assets/120x80_PNGSheets/_Jump.png" id="4_ye6a2"]
 [ext_resource type="Texture2D" uid="uid://dnk8ylidb6n11" path="res://Assets/120x80_PNGSheets/_wallslide flipped.png" id="6_0hyfe"]
+[ext_resource type="Texture2D" uid="uid://cjd8iquwnof7f" path="res://Assets/120x80_PNGSheets/_Hit.png" id="6_h4iuc"]
 [ext_resource type="Texture2D" uid="uid://cjac0uke6k5rt" path="res://Assets/120x80_PNGSheets/_Attack.png" id="7_7bemc"]
 [ext_resource type="Texture2D" uid="uid://dy4blw64080vl" path="res://Assets/120x80_PNGSheets/_Roll.png" id="10_tx1dd"]
 [ext_resource type="Script" uid="uid://dr7ueoxnpby7n" path="res://Scripts/progress_bar.gd" id="11_gymyn"]
@@ -114,6 +115,10 @@ region = Rect2(120, 0, 120, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_srtle"]
 atlas = ExtResource("2_4isjw")
 region = Rect2(240, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi64h"]
+atlas = ExtResource("6_h4iuc")
+region = Rect2(0, 0, 120, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1aahw"]
 atlas = ExtResource("1_vyvkx")
@@ -382,6 +387,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bi64h")
+}],
+"loop": true,
+"name": &"Hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1aahw")
 }, {
 "duration": 1.0,
@@ -550,9 +563,8 @@ script = ExtResource("1_32x25")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 sprite_frames = SubResource("SpriteFrames_ysqk1")
-animation = &"Roll"
+animation = &"Hurt"
 autoplay = "Idle"
-frame_progress = 0.268944
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -17.5)
@@ -575,6 +587,7 @@ position = Vector2(0, 21.75)
 shape = SubResource("RectangleShape2D_tx1dd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 z_index = 13

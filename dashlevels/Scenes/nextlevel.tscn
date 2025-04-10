@@ -1,14 +1,80 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0hb4qjimtshi"]
+[gd_scene load_steps=7 format=3 uid="uid://c0hb4qjimtshi"]
 
 [ext_resource type="Script" uid="uid://gislgidsncf7" path="res://Scripts/nextlevel.gd" id="1_kfwih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdmyh"]
 size = Vector2(16, 32)
 
+[sub_resource type="Animation" id="Animation_fwv21"]
+resource_name = "Fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_daypk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_32lxu"]
+resource_name = "back2basix"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_daypk"]
+_data = {
+&"Fade": SubResource("Animation_fwv21"),
+&"RESET": SubResource("Animation_daypk"),
+&"back2basix": SubResource("Animation_32lxu")
+}
+
 [node name="nextlevel" type="Area2D"]
 script = ExtResource("1_kfwih")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tdmyh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1169.0
+offset_bottom = 669.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_daypk")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

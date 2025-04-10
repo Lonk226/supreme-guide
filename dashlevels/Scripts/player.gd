@@ -25,7 +25,6 @@ var coyote_timer : Timer # Reference to the coyote timer
 var coyote_jump_available := true
 var is_facing_right := true
 
-@export_category("Dash var")
 @export var dash_speed = 850
 @export var dash_grav = 0
 @export var dash_num = 1
@@ -40,13 +39,16 @@ var dead = false
 var invincible = false
 var cannot_move = false
 
-signal hit()
+signal death()
 signal hurt()
 
 var boost = true
 var boots = true
 var getboost = false
 var getboots = false
+
+var damaged = false
+var knockback = 10
 
 func _ready() -> void:
 	# Set up input buffer timer
@@ -77,7 +79,7 @@ func _physics_process(delta) -> void:
 		boots = false
 	if current_scene_file == "res://Scenes/world.tscn":
 		camera.limit_bottom = 10000
-	if current_scene_file == "res://Scenes/Levels/level_11.tscn" or "res://Scenes/Levels/level_12.tscn":
+	if current_scene_file == "res://Scenes/Levels/level_11.tscn" or current_scene_file == "res://Scenes/Levels/level_12.tscn":
 		FRICTION = 200
 
 	
@@ -86,6 +88,9 @@ func _physics_process(delta) -> void:
 	if dead:
 		animated_sprite.play("Death")
 	if dead == true:
+		return
+	if damaged:
+		animated_sprite.play("Hurt")
 		return
 	# Get inputs
 	var horizontal_input := Input.get_axis("left", "right")
@@ -223,6 +228,7 @@ func _on_killzone_death() -> void: #handle death
 	
 func die():
 	dead = true
+	death.emit()
 	await get_tree().create_timer(0.66666666666666).timeout
 	dead = false
 	position.x = 0
@@ -258,23 +264,26 @@ func _on_nextlevel_nextlvlanim() -> void:
 func damage():
 	health -= 1
 	hurt.emit()
+	damaged = true
+	animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.WHITE
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.WHITE
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.WHITE
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(0.025).timeout
+	animated_sprite.modulate = Color.WHITE
+	await get_tree().create_timer(0.025).timeout
+	damaged = false
 	if health == 0:
 		die()
-	animated_sprite.modulate = Color.RED
-	await get_tree().create_timer(0.025).timeout
-	animated_sprite.modulate = Color.WHITE
-	await get_tree().create_timer(0.025).timeout
-	animated_sprite.modulate = Color.RED
-	await get_tree().create_timer(0.025).timeout
-	animated_sprite.modulate = Color.WHITE
-	await get_tree().create_timer(0.025).timeout
-	animated_sprite.modulate = Color.RED
-	await get_tree().create_timer(0.025).timeout
-	animated_sprite.modulate = Color.WHITE
-	await get_tree().create_timer(0.025).timeout
-	animated_sprite.modulate = Color.RED
-	await get_tree().create_timer(0.025).timeout
-	animated_sprite.modulate = Color.WHITE
-	await get_tree().create_timer(0.025).timeout
-	if health == 0:
-		die()
+	invincible = true
+	await get_tree().create_timer(0.75).timeout
+	invincible = false
