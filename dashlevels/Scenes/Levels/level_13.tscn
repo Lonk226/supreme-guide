@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhw3cceqm3p1y"]
+[gd_scene load_steps=4 format=3 uid="uid://dhw3cceqm3p1y"]
 
 [ext_resource type="PackedScene" uid="uid://wak43to3duln" path="res://Scenes/level_template.tscn" id="1_s5cxv"]
 [ext_resource type="PackedScene" uid="uid://ci7g2f1y4q4o4" path="res://Scenes/dashgem.tscn" id="2_p4iho"]
+[ext_resource type="PackedScene" uid="uid://c0hb4qjimtshi" path="res://Scenes/nextlevel.tscn" id="3_d3xne"]
 
 [node name="level_13" instance=ExtResource("1_s5cxv")]
 
@@ -25,36 +26,51 @@ position = Vector2(-835, -376)
 [node name="dashgem7" parent="." index="5" instance=ExtResource("2_p4iho")]
 position = Vector2(70, -66)
 
-[node name="dashgem8" parent="." index="6" instance=ExtResource("2_p4iho")]
+[node name="dashgem13" parent="." index="6" instance=ExtResource("2_p4iho")]
+position = Vector2(70, -97)
+
+[node name="dashgem14" parent="." index="7" instance=ExtResource("2_p4iho")]
+position = Vector2(70, -35)
+
+[node name="dashgem15" parent="." index="8" instance=ExtResource("2_p4iho")]
+position = Vector2(70, -128)
+
+[node name="dashgem8" parent="." index="9" instance=ExtResource("2_p4iho")]
 position = Vector2(-580, -364)
 
-[node name="dashgem9" parent="." index="7" instance=ExtResource("2_p4iho")]
+[node name="dashgem9" parent="." index="10" instance=ExtResource("2_p4iho")]
 position = Vector2(-736, -360)
 
-[node name="dashgem2" parent="." index="8" instance=ExtResource("2_p4iho")]
+[node name="dashgem2" parent="." index="11" instance=ExtResource("2_p4iho")]
 position = Vector2(-781, -397)
 
-[node name="dashgem3" parent="." index="9" instance=ExtResource("2_p4iho")]
+[node name="dashgem3" parent="." index="12" instance=ExtResource("2_p4iho")]
 position = Vector2(-536, -400)
 
-[node name="dashgem4" parent="." index="10" instance=ExtResource("2_p4iho")]
+[node name="dashgem4" parent="." index="13" instance=ExtResource("2_p4iho")]
 position = Vector2(-474, -379)
 
-[node name="dashgem11" parent="." index="11" instance=ExtResource("2_p4iho")]
+[node name="dashgem11" parent="." index="14" instance=ExtResource("2_p4iho")]
 position = Vector2(-506, -361)
 
-[node name="dashgem12" parent="." index="12" instance=ExtResource("2_p4iho")]
+[node name="dashgem12" parent="." index="15" instance=ExtResource("2_p4iho")]
 position = Vector2(-802, -359)
 
-[node name="dashgem5" parent="." index="13" instance=ExtResource("2_p4iho")]
+[node name="dashgem5" parent="." index="16" instance=ExtResource("2_p4iho")]
 position = Vector2(-699, -416)
 
-[node name="dashgem10" parent="." index="14" instance=ExtResource("2_p4iho")]
+[node name="dashgem10" parent="." index="17" instance=ExtResource("2_p4iho")]
 position = Vector2(-658, -441)
+
+[node name="nextlevel" parent="." index="18" instance=ExtResource("3_d3xne")]
+position = Vector2(-1287, -530)
 
 [connection signal="reset_dash" from="dashgem" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="dashgem6" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="dashgem7" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="reset_dash" from="dashgem13" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="reset_dash" from="dashgem14" to="Player" method="_on_dashgem_reset_dash"]
+[connection signal="reset_dash" from="dashgem15" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="dashgem8" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="dashgem9" to="Player" method="_on_dashgem_reset_dash"]
 [connection signal="reset_dash" from="dashgem2" to="Player" method="_on_dashgem_reset_dash"]
