@@ -561,9 +561,8 @@ ghost_node = ExtResource("2_pu2lt")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 sprite_frames = SubResource("SpriteFrames_ysqk1")
-animation = &"Roll"
+animation = &"Hurt"
 autoplay = "Idle"
-frame_progress = 0.103287
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -17.5)
@@ -586,7 +585,8 @@ position = Vector2(0, 21.75)
 shape = SubResource("RectangleShape2D_tx1dd")
 
 [node name="GhostTimer" type="Timer" parent="."]
-wait_time = 0.01
+wait_time = 0.15
+autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Dashcollider" to="." method="_on_sword_hitbox_left_body_entered"]

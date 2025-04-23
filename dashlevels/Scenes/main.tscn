@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://i4i681u2lt2p"]
+[gd_scene load_steps=12 format=3 uid="uid://i4i681u2lt2p"]
 
 [ext_resource type="Script" uid="uid://c3wyovv8y7ng7" path="res://Scripts/main.gd" id="1_hptm8"]
 [ext_resource type="PackedScene" uid="uid://bhov86vf3wm2n" path="res://Scenes/player.tscn" id="1_ynf5e"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://k4gs4y5g68ye" path="res://Scenes/Levels/level_10.tscn" id="6_jkdf5"]
 [ext_resource type="PackedScene" uid="uid://wuhuerndsli" path="res://Scenes/enemy.tscn" id="8_k12tt"]
 [ext_resource type="PackedScene" uid="uid://ci7g2f1y4q4o4" path="res://Scenes/dashgem.tscn" id="9_h1bgf"]
+[ext_resource type="PackedScene" uid="uid://c4nn8d3b306tj" path="res://Scenes/sawblade.tscn" id="11_d1ilt"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_hptm8")
@@ -32,6 +33,9 @@ script = ExtResource("1_hptm8")
 
 [node name="dashgem" parent="." instance=ExtResource("9_h1bgf")]
 
+[node name="Sawblade" parent="." instance=ExtResource("11_d1ilt")]
+
 [connection signal="death" from="Player" to="nextlevel" method="_on_player_death"]
 [connection signal="death" from="killzone" to="." method="_on_killzone_death"]
 [connection signal="death" from="Enemy" to="." method="_on_enemy_death"]
+[connection signal="death" from="Sawblade" to="Player" method="_on_sawblade_death"]

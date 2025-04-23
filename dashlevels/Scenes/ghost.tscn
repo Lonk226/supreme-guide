@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c83ycfgb63gls"]
+
+[ext_resource type="Texture2D" uid="uid://uldtf3s5xaee" path="res://Assets/120x80_PNGSheets/_Dash.png" id="1_3mxmt"]
+[ext_resource type="Script" uid="uid://da78x10oa8ahm" path="res://Scripts/ghost.gd" id="2_e3r4w"]
+
+[node name="Ghost" type="Sprite2D"]
+modulate = Color(0.497474, 0.497474, 0.497474, 1)
+show_behind_parent = true
+position = Vector2(0, -40)
+texture = ExtResource("1_3mxmt")
+region_enabled = true
+region_rect = Rect2(0, 0, 120, 80)
+script = ExtResource("2_e3r4w")

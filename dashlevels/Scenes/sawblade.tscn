@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4nn8d3b306tj"]
+[gd_scene load_steps=13 format=3 uid="uid://c4nn8d3b306tj"]
 
+[ext_resource type="Script" uid="uid://wsvllfjkv5sl" path="res://Scripts/sawblade.gd" id="1_3yunr"]
 [ext_resource type="Texture2D" uid="uid://cw7gp1n8k60hw" path="res://Assets/Sawblade.png" id="1_yasl5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yunr"]
@@ -69,10 +70,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_s5plv"]
 
 [node name="Sawblade" type="Area2D"]
+script = ExtResource("1_3yunr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y6cn0")
-frame_progress = 0.757656
+autoplay = "default"
+frame_progress = 0.493916
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s5plv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
