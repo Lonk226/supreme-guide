@@ -58,7 +58,7 @@ var damaged = false
 var knockback = 10
 var isgrounded = true
 
-@export var wallsliding = false
+var wallsliding = false
 
 signal jump
 signal land
@@ -189,7 +189,6 @@ func _physics_process(delta) -> void:
 	# Apply velocity
 	move_and_slide()
 	
-	
 	 # Change player direction using flip_h
 	if horizontal_input > 0 and !is_facing_right:
 		is_facing_right = true
@@ -200,23 +199,21 @@ func _physics_process(delta) -> void:
 		animated_sprite.flip_h = true  # Face left
 	
 	quit()
-	
-	if is_on_wall_only() and velocity.y > 0 and horizontal_input != 0 and boots:
-		wallsliding = true
-	else:
-		wallsliding = false
 
 ## Returns the gravity based on the state of the player
 func getthegravity(input_dir : float = 0) -> float:
 	if Input.is_action_pressed("fast_fall"):
 		return FAST_FALL_GRAVITY
 		SPEED = 250
+		wallsliding = false
 	if is_on_wall_only() and velocity.y > 0 and input_dir != 0 and boots:
 		return WALL_GRAVITY
 		SPEED = 250
+		wallsliding = true
 	else:
 		SPEED = 250
 		return GRAVITY if velocity.y < 0 else FALL_GRAVITY
+		wallsliding = false
 
 ## Reset coyote jump
 func coyote_timeout() -> void:
