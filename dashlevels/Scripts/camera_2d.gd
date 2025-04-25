@@ -12,10 +12,11 @@ func randomoffset() -> Vector2:
 	return Vector2(rng.randf_range(-shakestrength, shakestrength), rng.randf_range(-shakestrength, shakestrength))
 	
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("wavedash"):
-		apply_shake()
-		
 	if shakestrength > 0:
 		shakestrength = lerpf(shakestrength, 0, shakefade * delta)
 		
 		offset = randomoffset()
+
+
+func _on_player_dashs() -> void:
+	apply_shake()

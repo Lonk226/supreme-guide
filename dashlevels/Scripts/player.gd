@@ -59,6 +59,7 @@ var isgrounded = true
 
 signal jump
 signal land
+signal dashs
 
 func _ready() -> void:
 	# Set up input buffer timer
@@ -104,7 +105,7 @@ func _physics_process(delta) -> void:
 		return
 	if isgrounded == false and is_on_floor() == true:
 		print("dust")
-		#land.emit()
+		land.emit()
 	# Get inputs
 	var horizontal_input = Input.get_axis("left", "right")
 	var jump_attempted := Input.is_action_just_pressed("jump")
@@ -135,7 +136,7 @@ func _physics_process(delta) -> void:
 		if coyote_jump_available: # If jumping on the ground
 			velocity.y = JUMP_VELOCITY
 			coyote_jump_available = false
-			jump.emit()
+			#jump.emit()
 		elif is_on_wall() and horizontal_input != 0 and boots: # If jumping off a wall
 			velocity.y = WALL_JUMP_VELOCITY
 			velocity.x = WALL_JUMP_PUSHBACK * -sign(horizontal_input)
@@ -233,6 +234,7 @@ func dash_started(): #check if dashing
 	ghost_timer.start()
 	var tween = get_tree().create_tween()
 	if is_airdashing == true:
+		dashs.emit()
 		dash_key_pressed = 1
 		invincible = true
 		$Dashcollider/CollisionShape2D.disabled = false

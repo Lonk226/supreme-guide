@@ -244,9 +244,6 @@ layer_1/tile_data = PackedInt32Array(-8061003, 262144, 4, -7995467, 196608, 4, -
 
 [node name="Player" parent="." instance=ExtResource("2_2tgdi")]
 
-[node name="Marker2D" type="Marker2D" parent="Player"]
-position = Vector2(-14, 0)
-
 [node name="killzone" parent="." instance=ExtResource("3_b6m8b")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
