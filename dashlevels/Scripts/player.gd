@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var dustspot: Marker2D = $AnimatedSprite2D/Marker2D
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_stream_player_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
+@onready var audio_stream_player_3: AudioStreamPlayer2D = $AudioStreamPlayer2D3
 @export var dust = preload("res://Scenes/duster.tscn")
 @export var ghost_node: PackedScene
 
@@ -107,7 +108,6 @@ func _physics_process(delta) -> void:
 		animated_sprite.play("Hurt")
 		return
 	if isgrounded == false and is_on_floor() == true:
-		print("dust")
 		land.emit()
 	# Get inputs
 	var horizontal_input = Input.get_axis("left", "right")
@@ -267,9 +267,10 @@ func _on_killzone_death() -> void: #handle death
 	die()
 	
 func die():
+	audio_stream_player_3.playing = true
 	dead = true
 	death.emit()
-	await get_tree().create_timer(0.66666666666666).timeout
+	await get_tree().create_timer(0.8).timeout
 	dead = false
 	position.x = 0
 	position.y = 0

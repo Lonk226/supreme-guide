@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bhov86vf3wm2n"]
+[gd_scene load_steps=88 format=3 uid="uid://bhov86vf3wm2n"]
 
 [ext_resource type="Script" uid="uid://cxi8kjtse0xkv" path="res://Scripts/player.gd" id="1_32x25"]
 [ext_resource type="Texture2D" uid="uid://dg10i2ard3gj1" path="res://Assets/120x80_PNGSheets/_Idle.png" id="1_vyvkx"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://82voubyoo2rl" path="res://Scripts/camera_2d.gd" id="13_ukyrk"]
 [ext_resource type="AudioStream" uid="uid://colq812l13ce0" path="res://Assets/SFX/jump.wav" id="14_h4iuc"]
 [ext_resource type="AudioStream" uid="uid://cbvm0jplan3jn" path="res://Assets/SFX/dash_red_right.wav" id="15_h4iuc"]
+[ext_resource type="AudioStream" uid="uid://o6fv1xx301f0" path="res://Assets/SFX/death.wav" id="16_fd4e3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3enw"]
 atlas = ExtResource("2_n53or")
@@ -367,7 +368,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1j4cs")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 15.0
 }, {
@@ -564,7 +565,7 @@ ghost_node = ExtResource("2_pu2lt")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 sprite_frames = SubResource("SpriteFrames_ysqk1")
-animation = &"Idle"
+animation = &"Death"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -597,6 +598,9 @@ autoplay = true
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_h4iuc")
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_fd4e3")
 
 [connection signal="dashs" from="." to="Camera2D" method="_on_player_dashs"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
