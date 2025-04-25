@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var nextlevel: Area2D = $"../nextlevel"
 @onready var ghost_timer: Timer = $GhostTimer
 @onready var dustspot: Marker2D = $AnimatedSprite2D/Marker2D
+@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio_stream_player_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
 @export var dust = preload("res://Scenes/duster.tscn")
 @export var ghost_node: PackedScene
 
@@ -76,6 +78,7 @@ func _ready() -> void:
 	coyote_timer.timeout.connect(coyote_timeout)
 	
 	$Dashcollider/CollisionShape2D.disabled = true
+	audio_stream_player.playing = false
 
 func _physics_process(delta) -> void:
 	var current_scene_file = get_tree().current_scene.scene_file_path
@@ -136,10 +139,12 @@ func _physics_process(delta) -> void:
 		if coyote_jump_available: # If jumping on the ground
 			velocity.y = JUMP_VELOCITY
 			coyote_jump_available = false
-			#jump.emit()
+			jump.emit()
+			audio_stream_player.playing = true
 		elif is_on_wall() and horizontal_input != 0 and boots: # If jumping off a wall
 			velocity.y = WALL_JUMP_VELOCITY
 			velocity.x = WALL_JUMP_PUSHBACK * -sign(horizontal_input)
+			audio_stream_player.playing = true
 		elif jump_attempted: # Queue input buffer if jump was attempted
 			input_buffer.start()
 			
@@ -237,6 +242,7 @@ func dash_started(): #check if dashing
 		dashs.emit()
 		dash_key_pressed = 1
 		invincible = true
+		audio_stream_player_2.playing = true
 		$Dashcollider/CollisionShape2D.disabled = false
 		await get_tree().create_timer(0.15).timeout
 		is_airdashing = false

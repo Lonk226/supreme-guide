@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://c4nn8d3b306tj"]
+
+[ext_resource type="Script" uid="uid://wsvllfjkv5sl" path="res://Scripts/sawblade.gd" id="1_3yunr"]
+[ext_resource type="Texture2D" uid="uid://cw7gp1n8k60hw" path="res://Assets/Sawblade.png" id="1_yasl5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yunr"]
+atlas = ExtResource("1_yasl5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6dok"]
+atlas = ExtResource("1_yasl5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofewd"]
+atlas = ExtResource("1_yasl5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yl76w"]
+atlas = ExtResource("1_yasl5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb6dc"]
+atlas = ExtResource("1_yasl5")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3mk4"]
+atlas = ExtResource("1_yasl5")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jafwt"]
+atlas = ExtResource("1_yasl5")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r54ra"]
+atlas = ExtResource("1_yasl5")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6cn0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yunr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6dok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofewd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yl76w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb6dc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3mk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jafwt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r54ra")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s5plv"]
+
+[node name="Sawblade" type="Area2D"]
+script = ExtResource("1_3yunr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y6cn0")
+autoplay = "default"
+frame_progress = 0.493916
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s5plv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
