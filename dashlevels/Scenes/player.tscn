@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://bhov86vf3wm2n"]
+[gd_scene load_steps=85 format=3 uid="uid://bhov86vf3wm2n"]
 
 [ext_resource type="Script" uid="uid://cxi8kjtse0xkv" path="res://Scripts/player.gd" id="1_32x25"]
 [ext_resource type="Texture2D" uid="uid://dg10i2ard3gj1" path="res://Assets/120x80_PNGSheets/_Idle.png" id="1_vyvkx"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cjd8iquwnof7f" path="res://Assets/120x80_PNGSheets/_Hit.png" id="6_h4iuc"]
 [ext_resource type="Texture2D" uid="uid://cjac0uke6k5rt" path="res://Assets/120x80_PNGSheets/_Attack.png" id="7_7bemc"]
 [ext_resource type="Texture2D" uid="uid://dy4blw64080vl" path="res://Assets/120x80_PNGSheets/_Roll.png" id="10_tx1dd"]
+[ext_resource type="Script" uid="uid://82voubyoo2rl" path="res://Scripts/camera_2d.gd" id="13_ukyrk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3enw"]
 atlas = ExtResource("2_n53or")
@@ -561,9 +562,8 @@ ghost_node = ExtResource("2_pu2lt")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 sprite_frames = SubResource("SpriteFrames_ysqk1")
-animation = &"Roll"
+animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.103287
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -17.5)
@@ -573,6 +573,7 @@ shape = SubResource("RectangleShape2D_f1ek2")
 zoom = Vector2(2, 2)
 limit_bottom = 200
 limit_smoothed = true
+script = ExtResource("13_ukyrk")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

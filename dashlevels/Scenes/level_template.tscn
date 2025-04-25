@@ -1,5 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://wak43to3duln"]
+[gd_scene load_steps=28 format=3 uid="uid://wak43to3duln"]
 
+[ext_resource type="Script" uid="uid://covx0exg685mi" path="res://Scripts/level_template.gd" id="1_ds0tp"]
 [ext_resource type="Texture2D" uid="uid://1ibp436ih5e1" path="res://Assets/Tileset.png" id="1_yt1cq"]
 [ext_resource type="PackedScene" uid="uid://bhov86vf3wm2n" path="res://Scenes/player.tscn" id="2_2tgdi"]
 [ext_resource type="Texture2D" uid="uid://cfq5wwlyco2fk" path="res://Assets/Tileset-27.png.png" id="2_derj7"]
@@ -230,6 +231,7 @@ sources/10 = SubResource("TileSetAtlasSource_nop2h")
 distance = -1216.0
 
 [node name="level_template" type="Node2D"]
+script = ExtResource("1_ds0tp")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_762v7")
@@ -242,10 +244,15 @@ layer_1/tile_data = PackedInt32Array(-8061003, 262144, 4, -7995467, 196608, 4, -
 
 [node name="Player" parent="." instance=ExtResource("2_2tgdi")]
 
+[node name="Marker2D" type="Marker2D" parent="Player"]
+position = Vector2(-14, 0)
+
 [node name="killzone" parent="." instance=ExtResource("3_b6m8b")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 position = Vector2(0, -300)
 shape = SubResource("WorldBoundaryShape2D_ka7v4")
 
+[connection signal="jump" from="Player" to="." method="_on_player_jump"]
+[connection signal="land" from="Player" to="." method="_on_player_land"]
 [connection signal="death" from="killzone" to="Player" method="_on_killzone_death"]

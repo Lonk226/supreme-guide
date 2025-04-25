@@ -6,10 +6,11 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = $"."
 @onready var nextlevel: Area2D = $"../nextlevel"
 @onready var ghost_timer: Timer = $GhostTimer
-
+@onready var dustspot: Marker2D = $AnimatedSprite2D/Marker2D
+@export var dust = preload("res://Scenes/duster.tscn")
 @export var ghost_node: PackedScene
 
-const SPEED = 250.0 # Base horizontal movement speed
+var SPEED = 250.0 # Base horizontal movement speed
 const ACCELERATION = 800.0 # Base acceleration
 var FRICTION = 6000.0 # Base friction
 const GRAVITY = 2000.0 # Gravity when moving upwards
@@ -52,6 +53,12 @@ var getboots = false
 
 var damaged = false
 var knockback = 10
+var isgrounded = true
+
+@export var wallsliding = false
+
+signal jump
+signal land
 
 func _ready() -> void:
 	# Set up input buffer timer
@@ -95,10 +102,15 @@ func _physics_process(delta) -> void:
 	if damaged:
 		animated_sprite.play("Hurt")
 		return
+	if isgrounded == false and is_on_floor() == true:
+		print("dust")
+		#land.emit()
 	# Get inputs
-	var horizontal_input := Input.get_axis("left", "right")
+	var horizontal_input = Input.get_axis("left", "right")
 	var jump_attempted := Input.is_action_just_pressed("jump")
 	var is_dashing := Input.is_action_pressed("wavedash") # Check if dash is pressed
+	
+	isgrounded = is_on_floor()
 	# Change animations
 	if is_on_floor():
 		if horizontal_input != 0 and not is_airdashing:
@@ -123,6 +135,7 @@ func _physics_process(delta) -> void:
 		if coyote_jump_available: # If jumping on the ground
 			velocity.y = JUMP_VELOCITY
 			coyote_jump_available = false
+			jump.emit()
 		elif is_on_wall() and horizontal_input != 0 and boots: # If jumping off a wall
 			velocity.y = WALL_JUMP_VELOCITY
 			velocity.x = WALL_JUMP_PUSHBACK * -sign(horizontal_input)
@@ -181,14 +194,23 @@ func _physics_process(delta) -> void:
 		animated_sprite.flip_h = true  # Face left
 	
 	quit()
+	
+	if is_on_wall_only() and velocity.y > 0 and horizontal_input != 0 and boots:
+		wallsliding = true
+	else:
+		wallsliding = false
 
 ## Returns the gravity based on the state of the player
 func getthegravity(input_dir : float = 0) -> float:
 	if Input.is_action_pressed("fast_fall"):
 		return FAST_FALL_GRAVITY
+		SPEED = 250
 	if is_on_wall_only() and velocity.y > 0 and input_dir != 0 and boots:
 		return WALL_GRAVITY
-	return GRAVITY if velocity.y < 0 else FALL_GRAVITY
+		SPEED = 250
+	else:
+		SPEED = 250
+		return GRAVITY if velocity.y < 0 else FALL_GRAVITY
 
 ## Reset coyote jump
 func coyote_timeout() -> void:
