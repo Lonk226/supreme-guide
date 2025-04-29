@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://cg3kl37isa03e"]
+
+[ext_resource type="Texture2D" uid="uid://uqugf3rkyakr" path="res://Assets/dust1.png" id="1_sy3h8"]
+[ext_resource type="Texture2D" uid="uid://b0sjixi1t1cft" path="res://Assets/dust2.png" id="2_xv1wt"]
+[ext_resource type="Texture2D" uid="uid://bekad3bdme8he" path="res://Assets/dust3.png" id="3_v4jyb"]
+[ext_resource type="Script" uid="uid://gjepmlfvr7t" path="res://Scripts/dust.gd" id="5_xv1wt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25ewe"]
+atlas = ExtResource("1_sy3h8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_woo0b"]
+atlas = ExtResource("2_xv1wt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yalkc"]
+atlas = ExtResource("3_v4jyb")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nspn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25ewe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_woo0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yalkc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_xv1wt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sy3h8"]
+resource_name = "fade"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v4jyb"]
+_data = {
+&"RESET": SubResource("Animation_xv1wt"),
+&"fade": SubResource("Animation_sy3h8")
+}
+
+[node name="Dust" type="AnimatedSprite2D"]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_nspn8")
+autoplay = "default"
+frame_progress = 0.175591
+script = ExtResource("5_xv1wt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v4jyb")
+}
+autoplay = "fade"
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
