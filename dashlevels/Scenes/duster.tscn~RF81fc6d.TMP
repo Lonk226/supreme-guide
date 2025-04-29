@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://544p25jmmthh"]
+
+[ext_resource type="Texture2D" uid="uid://c16wu2duna4g5" path="res://Assets/dust.png" id="1_73w3y"]
+
+[sub_resource type="Curve" id="Curve_7dp3o"]
+_data = [Vector2(0, 0.359551), 0.0, 0.0, 0, 0, Vector2(1, 0.0344993), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Dust" type="CPUParticles2D"]
+emitting = false
+amount = 5
+texture = ExtResource("1_73w3y")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+direction = Vector2(45, 0)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 45.0
+initial_velocity_max = 45.0
+scale_amount_curve = SubResource("Curve_7dp3o")

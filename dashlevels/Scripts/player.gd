@@ -342,3 +342,7 @@ func _on_ghost_timer_timeout() -> void:
 
 func _on_sawblade_death() -> void:
 	die()
+
+func _on_lava_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		die()
