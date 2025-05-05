@@ -94,7 +94,7 @@ func _physics_process(delta) -> void:
 		boots = false
 	if current_scene_file == "res://Scenes/world.tscn":
 		camera.limit_bottom = 10000
-	if current_scene_file == "res://Scenes/Levels/level_11.tscn" or current_scene_file == "res://Scenes/Levels/level_12.tscn" or current_scene_file == "res://Scenes/Levels/level_13.tscn" or current_scene_file == "res://Scenes/Levels/level_14.tscn" or current_scene_file == "res://Scenes/Levels/level_15.tscn":
+	if current_scene_file == "res://Scenes/Levels/level_6.tscn" or current_scene_file == "res://Scenes/Levels/level_7.tscn" or current_scene_file == "res://Scenes/Levels/level_8.tscn" or current_scene_file == "res://Scenes/Levels/level_9.tscn" or current_scene_file == "res://Scenes/Levels/level_10.tscn":
 		FRICTION = 200
 	else:
 		FRICTION = 6000
