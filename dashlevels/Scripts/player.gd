@@ -83,7 +83,7 @@ func _ready() -> void:
 
 func _physics_process(delta) -> void:
 	var current_scene_file = get_tree().current_scene.scene_file_path
-	if current_scene_file == "res://Scenes/Levels/level_10.tscn":
+	if current_scene_file == "res://Scenes/Levels/level_16.tscn":
 		camera.limit_bottom = 162
 		camera.limit_left = -288
 		camera.limit_right = 288
