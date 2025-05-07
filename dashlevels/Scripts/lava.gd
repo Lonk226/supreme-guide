@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = -35
+var speed = -50
 
 func _process(delta: float) -> void:
 	translate(Vector2(0, speed * delta))
