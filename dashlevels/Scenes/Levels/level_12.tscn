@@ -3,5 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://fe1ieavpi75v" path="res://Scenes/level_template_lava.tscn" id="1_pqpx4"]
 
 [node name="level_12" instance=ExtResource("1_pqpx4")]
-
-[connection signal="body_entered" from="Lava" to="Player" method="_on_lava_body_entered"]
