@@ -11,3 +11,5 @@ layer_0/tile_data = PackedInt32Array(65533, 65547, 0, 131069, 65547, 1, 196605, 
 
 [node name="nextlevel" parent="." index="4" instance=ExtResource("2_p4iho")]
 position = Vector2(-483, -1744)
+
+[connection signal="nextlvlanim" from="nextlevel" to="." method="_on_nextlevel_nextlvlanim"]
