@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bhov86vf3wm2n"]
+[gd_scene load_steps=89 format=3 uid="uid://bhov86vf3wm2n"]
 
 [ext_resource type="Script" uid="uid://cxi8kjtse0xkv" path="res://Scripts/player.gd" id="1_32x25"]
 [ext_resource type="Texture2D" uid="uid://dg10i2ard3gj1" path="res://Assets/120x80_PNGSheets/_Idle.png" id="1_vyvkx"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://colq812l13ce0" path="res://Assets/SFX/jump.wav" id="14_h4iuc"]
 [ext_resource type="AudioStream" uid="uid://cbvm0jplan3jn" path="res://Assets/SFX/dash_red_right.wav" id="15_h4iuc"]
 [ext_resource type="AudioStream" uid="uid://o6fv1xx301f0" path="res://Assets/SFX/death.wav" id="16_fd4e3"]
+[ext_resource type="FontFile" uid="uid://dbbrxfq7uutdx" path="res://Assets/Minecraftia-Regular.ttf" id="17_qqcod"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3enw"]
 atlas = ExtResource("2_n53or")
@@ -634,6 +635,16 @@ stream = ExtResource("15_h4iuc")
 
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_fd4e3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 34.0
+offset_top = 24.0
+offset_right = 74.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("17_qqcod")
+theme_override_font_sizes/font_size = 40
 
 [connection signal="dashs" from="." to="Camera2D" method="_on_player_dashs"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

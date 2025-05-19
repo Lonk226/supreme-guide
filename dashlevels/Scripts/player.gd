@@ -201,6 +201,8 @@ func _physics_process(delta) -> void:
 		animated_sprite.flip_h = true  # Face left
 	
 	quit()
+	
+	$CanvasLayer/Label.text = "deaths " + str(Global.death_count)
 
 ## Returns the gravity based on the state of the player
 func getthegravity(input_dir : float = 0) -> float:
@@ -273,6 +275,7 @@ func die():
 	dead = false
 	position.x = 0
 	position.y = 0
+	Global.death_count += 1
 	get_tree().reload_current_scene()
 	
 func pause():
