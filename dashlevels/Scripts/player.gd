@@ -203,6 +203,10 @@ func _physics_process(delta) -> void:
 	quit()
 	
 	$CanvasLayer/Label.text = "Deaths: " + str(Global.death_count)
+	$CanvasLayer/Label2.text = "Time: " + str(Global.speedtime)
+	
+	if current_scene_file == "res://Scenes/end.tscn":
+		$SpeedTimer.stop()
 
 ## Returns the gravity based on the state of the player
 func getthegravity(input_dir : float = 0) -> float:
@@ -344,10 +348,12 @@ func add_ghost():
 func _on_ghost_timer_timeout() -> void:
 	add_ghost()
 
-
 func _on_sawblade_death() -> void:
 	die()
 
 func _on_lava_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		die()
+
+func _on_speed_timer_timeout() -> void:
+	Global.speedtime += 1

@@ -644,15 +644,7 @@ offset_top = 24.0
 offset_right = 74.0
 offset_bottom = 47.0
 theme_override_fonts/font = ExtResource("17_qqcod")
-theme_override_font_sizes/font_size = 30
-
-[node name="Label2" type="Label" parent="CanvasLayer"]
-offset_left = 41.0
-offset_top = 88.0
-offset_right = 81.0
-offset_bottom = 130.0
-theme_override_fonts/font = ExtResource("17_qqcod")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 
 [node name="SpeedTimer" type="Timer" parent="."]
 autostart = true
