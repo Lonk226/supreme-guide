@@ -202,7 +202,7 @@ func _physics_process(delta) -> void:
 	
 	quit()
 	
-	$CanvasLayer/Label.text = "deaths " + str(Global.death_count)
+	$CanvasLayer/Label.text = "Deaths: " + str(Global.death_count)
 
 ## Returns the gravity based on the state of the player
 func getthegravity(input_dir : float = 0) -> float:
