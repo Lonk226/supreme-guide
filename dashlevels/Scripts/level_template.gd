@@ -28,7 +28,3 @@ func dustemit():
 			duster.direction.x = -45
 		else:
 			duster.direction.x = 45
-
-
-func _on_nextlevel_nextlvlanim() -> void:
-	pass # Replace with function body.
